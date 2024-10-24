@@ -2,6 +2,68 @@
 
 
 
+## v4.0.9 (2024-10-24)
+
+### Fix
+
+* fix: typo in layer 12 YAML ([`d634c8b`](https://github.com/jbloomAus/SAELens/commit/d634c8b2e8665bc3156c46fc8b1b439e26c289c9))
+
+### Unknown
+
+* Merge pull request #349 from jbloomAus/np_id_fix_2
+
+fix: use the correct layer for new gemma scope SAE sparsities ([`4c32de0`](https://github.com/jbloomAus/SAELens/commit/4c32de0de3efe9f35007df00c6b5aad102552150))
+
+
+## v4.0.8 (2024-10-24)
+
+### Fix
+
+* fix: use the correct layer for new gemma scope SAE sparsities ([`a78b93e`](https://github.com/jbloomAus/SAELens/commit/a78b93e33ecfee5ff5e5b08cdf9076cdeabec573))
+
+### Unknown
+
+* Merge pull request #348 from jbloomAus/np_id_fix
+
+fix: use the correct layer for new gemma scope SAE sparsities ([`1f6823a`](https://github.com/jbloomAus/SAELens/commit/1f6823a4881a26df18b7c23e2f3a29a8cc93bcf6))
+
+
+## v4.0.7 (2024-10-23)
+
+### Fix
+
+* fix: Test JumpReLU/Gated SAE and fix sae forward with error term (#328)
+
+* chore: adding tests a slight refactoring for SAE forward methods
+
+* refactoring forward methods using a helper to avoid firing hooks
+
+* rewording intermediate var
+
+* use process_sae_in helper in training sae encode
+
+* testing that sae.forward() with error term works with hooks
+
+* cleaning up more unneeded device=cpu in tests ([`ae345b6`](https://github.com/jbloomAus/SAELens/commit/ae345b642ceeeb87851af1ffa180979cc3670c9b))
+
+
+## v4.0.6 (2024-10-23)
+
+### Chore
+
+* chore: Add tests for evals (#346)
+
+* add unit tests for untested functions
+
+* adds test to increase coverage
+
+* fixes typo ([`06594f9`](https://github.com/jbloomAus/SAELens/commit/06594f97cb56f9f013ae420c147db09300ef9be4))
+
+### Fix
+
+* fix: pass device through to SAEConfigLoadOptions properly (#347) ([`531b1c7`](https://github.com/jbloomAus/SAELens/commit/531b1c7cac6971a3a5e9178710e9b3773d415a00))
+
+
 ## v4.0.5 (2024-10-22)
 
 ### Fix
