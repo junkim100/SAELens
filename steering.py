@@ -5,26 +5,15 @@ from typing import Optional
 import fire
 import matplotlib.pyplot as plt
 import pandas as pd
-import plotly.express as px
 import setproctitle
 import torch
 from tqdm import tqdm
-from transformer_lens import HookedTransformer
 
 from sae_lens import SAE, ActivationsStore, HookedSAETransformer
 
 setproctitle.setproctitle(os.environ["USER"])
 
 torch.set_grad_enabled(False)
-
-
-def get_dashboard_html(
-    sae_release: str = "llama-3-8b-it-res-jh",
-    sae_id: str = "blocks.25.hook_resid_post",
-    feature_idx: int = 0,
-):
-    html_template = "https://neuronpedia.org/{}/{}/{}?embed=true&embedexplanation=true&embedplots=true&embedtest=true&height=300"
-    return html_template.format(sae_release, sae_id, feature_idx)
 
 
 def find_max_activation(
@@ -104,7 +93,7 @@ def generate_with_steering(
             prepend_bos=sae.cfg.prepend_bos,
         )
 
-    return model.tokenizer.decode(output[0])
+    return model.tokenizer.decode(output[0])  # type: ignore
 
 
 def main(
