@@ -6,11 +6,14 @@ import fire
 import matplotlib.pyplot as plt
 import pandas as pd
 import plotly.express as px
+import setproctitle
 import torch
 from tqdm import tqdm
 from transformer_lens import HookedTransformer
 
 from sae_lens import SAE, ActivationsStore, HookedSAETransformer
+
+setproctitle.setproctitle(os.environ["USER"])
 
 torch.set_grad_enabled(False)
 
@@ -108,7 +111,7 @@ def main(
     model_name: str = "meta-llama/Llama-3.1-8B-Instruct",
     release_name: str = "llama-3-8b-it-res-jh",
     sae_id: str = "blocks.25.hook_resid_post",
-    steering_strengths: str = "-4.0,-2.0,-0.5,0.5,2.0,4.0",
+    steering_strengths: str = "-2.0,-1.8,-1.6,-1.4,-1.2,-1.0,-0.8,-0.6,-0.4,-0.2,0,0.2,0.4,0.6,0.8,1.0,1.2,1.4,1.6,1.8,2.0",
     prompt: str = "Let x = 1. What is x << 3 in Python 3?",
     max_new_tokens: int = 256,
     output_path: str = "./steering_output/mmlu_cs.html",
@@ -178,7 +181,7 @@ def main(
     responses = {
         "Type": ["Original Prompt", "Normal Response"]
         + [f"Steering {strength}" for strength in strengths],
-        "Text": [normal_text],
+        "Text": [prompt, normal_text],
     }
 
     # Collect steered responses
@@ -255,6 +258,15 @@ def main(
     # Save HTML file
     if not output_path.endswith(".html"):
         output_path += ".html"
+
+    # Get the directory path by removing the file name
+    output_dir = os.path.dirname(output_path)
+
+    # Create all necessary directories if they don't exist
+    if output_dir:  # Only create directories if there's a path specified
+        os.makedirs(output_dir, exist_ok=True)
+
+    # Write the output file
     with open(output_path, "w") as f:
         f.write(html_output)
 
